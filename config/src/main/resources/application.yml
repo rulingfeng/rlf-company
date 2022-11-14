@@ -11,5 +11,12 @@ spring:
         bootstrap: true
         native: #本地仓库存储
           search-locations: classpath:/config/{application}
+        git: #Git仓库存储
+          uri: https://github.com/rulingfeng/rlf-company/tree/master/config
+          username: 512387589@qq.com
+          password: rlf13757139317
+          clone-on-start: true
+          search-paths: '{application}'
+
 
 
