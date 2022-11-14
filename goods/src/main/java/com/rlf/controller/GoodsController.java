@@ -2,6 +2,7 @@ package com.rlf.controller;
 
 import com.rlf.model.GoodsMain;
 import com.rlf.service.GoodsMainService;
+import com.rlf.util.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,11 +21,11 @@ public class GoodsController {
     private GoodsMainService goodsMainService;
 
     @GetMapping("/bbb")
-    public void bbb(){
+    public Result<String> bbb(Long orderNo){
         GoodsMain orderMain = new GoodsMain();
-        orderMain.setOrderId(777l);
-        orderMain.setOrderNo(777l);
-        goodsMainService.save(orderMain);
 
+        orderMain.setOrderNo(orderNo);
+        goodsMainService.save(orderMain);
+        return Result.success("goods okok");
     }
 }

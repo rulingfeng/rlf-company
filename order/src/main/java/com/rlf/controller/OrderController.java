@@ -1,8 +1,11 @@
 package com.rlf.controller;
 
 import com.rlf.config.Constants;
+import com.rlf.feign.GoodsApi;
+import com.rlf.feign.StoreApi;
 import com.rlf.model.OrderMain;
 import com.rlf.service.OrderMainService;
+import com.rlf.util.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,11 +20,15 @@ import javax.annotation.Resource;
  */
 @RestController
 @RequestMapping("/test")
-public class TestController {
+public class OrderController {
     @Resource
     private Constants constants;
     @Autowired
     private OrderMainService orderMainService;
+    @Resource
+    private GoodsApi goodsApi;
+    @Resource
+    private StoreApi storeApi;
 
     @GetMapping("/aaa")
     public void aaa(){
@@ -29,11 +36,15 @@ public class TestController {
     }
 
     @GetMapping("/bbb")
-    public void bbb(){
+    public Result<String> bbb(){
         OrderMain orderMain = new OrderMain();
         orderMain.setOrderId(888l);
         orderMain.setOrderNo(888l);
         orderMainService.save(orderMain);
+        Result<String> bbbb = goodsApi.bbbb(777l);
+        System.out.println(bbbb);
+        return storeApi.bbbb(666l);
+
 
     }
 }

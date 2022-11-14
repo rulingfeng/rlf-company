@@ -13,6 +13,9 @@
         <module>gateway</module>
         <module>config</module>
         <module>order</module>
+        <module>goods</module>
+        <module>common</module>
+        <module>store</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
