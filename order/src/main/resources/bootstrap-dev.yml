@@ -1,0 +1,13 @@
+spring:
+  cloud:
+    config:
+      profile: dev #启用环境名称 对应order-dev.yml
+      label: master #分支名称
+      name: order #配置文件名称 对应配置中心resources.config下的目录
+      discovery:
+        enabled: true
+        service-id: config #与配置中心的名字对应
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
