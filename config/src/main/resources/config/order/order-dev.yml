@@ -9,8 +9,8 @@ spring:
 #    password: shmliy
 
   #单库多表
-  main:
-    allow-bean-definition-overriding: true
+#  main:
+#    allow-bean-definition-overriding: true
   shardingsphere:
     datasource:
       #和下面的m1对应
