@@ -49,10 +49,7 @@ spring:
               algorithm-expression: order_detail_$->{order_no % 4 + 1}
               sharding-column: order_no
 
-  cloud:
-    alibaba:
-      seata:
-        tx-service-group: my_test_tx_group
+
 #seata:
 #  enabled: true
 #  tx-service-group: my_test_tx_group # 事务群组（可以每个应用独立取名，也可以使用相同的名字）
@@ -64,8 +61,7 @@ logging:
   level:
     root: info #日志配置DEBUG,INFO,WARN,ERROR
     com.rlf.dao: debug
-    io:
-      seata: info
+
 
 order:
   type: asd
