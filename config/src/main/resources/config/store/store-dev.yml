@@ -7,6 +7,11 @@ spring:
     username: root
     password: shmliy
 
+  cloud:
+    alibaba:
+      seata:
+        tx-service-group: my_test_tx_group
+
 logging:
   level:
     root: info #日志配置DEBUG,INFO,WARN,ERROR

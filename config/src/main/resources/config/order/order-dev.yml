@@ -55,7 +55,10 @@ spring:
 #  tx-service-group: my_test_tx_group # 事务群组（可以每个应用独立取名，也可以使用相同的名字）
 #  enable-auto-data-source-proxy: true
 #  use-jdk-proxy: true
-
+  cloud:
+    alibaba:
+      seata:
+        tx-service-group: my_test_tx_group
 
 logging:
   level:
