@@ -10,7 +10,7 @@ spring:
   cloud:
     alibaba:
       seata:
-        tx-service-group: my_test_tx_seata_group
+        tx-service-group: my_test_tx_group
 logging:
   level:
     root: info #日志配置DEBUG,INFO,WARN,ERROR
