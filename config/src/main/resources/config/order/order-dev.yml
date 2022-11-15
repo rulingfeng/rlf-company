@@ -49,12 +49,17 @@ spring:
               algorithm-expression: order_detail_$->{order_no % 4 + 1}
               sharding-column: order_no
 
-
+  cloud:
+    alibaba:
+      seata:
+        tx-service-group: my_test_tx_seata_group
 
 logging:
   level:
     root: info #日志配置DEBUG,INFO,WARN,ERROR
     com.rlf.dao: debug
+    io:
+      seata: info
 
 order:
   type: asd
