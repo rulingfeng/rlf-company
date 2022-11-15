@@ -3,6 +3,8 @@ server:
 spring:
   application:
     name: config
+
+
   profiles:
     active: native #使用本地配置，要使用git存储改为git即可
   cloud:

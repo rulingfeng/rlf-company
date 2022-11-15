@@ -7,7 +7,9 @@ import com.rlf.feign.StoreApi;
 import com.rlf.model.OrderMain;
 import com.rlf.service.OrderMainService;
 import com.rlf.util.Result;
+import io.seata.spring.annotation.GlobalTransactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -39,6 +41,7 @@ public class OrderController {
     }
 
     @GetMapping("/bbb")
+    @GlobalTransactional(name = "fsp-create-order",rollbackFor = Exception.class)
     public Result<String> bbb(){
         ArrayList<OrderMain> objects = Lists.newArrayList();
         for (long i = 0; i < 4 ; i++) {
