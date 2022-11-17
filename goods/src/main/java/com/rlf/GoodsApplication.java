@@ -16,6 +16,7 @@ import org.springframework.web.client.RestTemplate;
 //@ComponentScan(basePackages = {"com.rlf"})
 public class GoodsApplication {
 	public static void main(String[] args) {
+		System.setProperty("druid.mysql.usePingMethod","false");
 		SpringApplication.run(GoodsApplication.class, args);
 	}
 
