@@ -48,7 +48,14 @@ spring:
             inline:
               algorithm-expression: order_detail_$->{order_no % 4 + 1}
               sharding-column: order_no
-
+feign:
+  hystrix:
+    enabled: false
+  client:
+    config:
+      default:
+        connectTimeout: 5000
+        readTimeout: 10000
 
 #seata:
 #  enabled: true
@@ -59,6 +66,9 @@ spring:
     alibaba:
       seata:
         tx-service-group: my_test_tx_group
+#    loadbalancer:
+#      retry:
+#        enabled: true
 
 logging:
   level:

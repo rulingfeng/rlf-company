@@ -11,6 +11,15 @@ spring:
       seata:
         tx-service-group: my_test_tx_group
 
+feign:
+  hystrix:
+    enabled: false
+  client:
+    config:
+      default:
+        connectTimeout: 5000
+        readTimeout: 10000
+
 logging:
   level:
     root: info #日志配置DEBUG,INFO,WARN,ERROR
