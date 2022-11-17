@@ -39,14 +39,14 @@ public class GoodsController {
     @GetMapping("/aaa")
 //    @Transactional(rollbackFor = Exception.class)
     @GlobalTransactional(name = "fsp-create-order",rollbackFor = Exception.class)
-    public Result<String> aaa(){
+    public Result<String> aaa(Integer type){
         GoodsMain orderMain = new GoodsMain();
 
         orderMain.setOrderNo(777l);
         goodsMainService.save(orderMain);
         Result<String> bbbb = storeApi.test(666l);
         System.out.println(bbbb);
-        int a =1/0;
+        int a =1/type;
         return Result.success("goods okok");
     }
 

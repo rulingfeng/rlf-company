@@ -42,7 +42,7 @@ public class OrderController {
 
     @GetMapping("/bbb")
     @GlobalTransactional(name = "fsp-create-order",rollbackFor = Exception.class)
-    public Result<String> bbb(){
+    public Result<String> bbb(Integer type){
         ArrayList<OrderMain> objects = Lists.newArrayList();
         for (long i = 0; i < 4 ; i++) {
             OrderMain orderMain = new OrderMain();
@@ -53,7 +53,7 @@ public class OrderController {
         orderMainService.saveBatch(objects);
         Result<String> bbbb = goodsApi.bbbb(777l);
         System.out.println(bbbb);
-        return storeApi.bbbb(666l);
+        return storeApi.bbbb(666l,type);
 
 
     }

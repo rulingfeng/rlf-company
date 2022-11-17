@@ -19,5 +19,5 @@ public interface StoreApi {
      * @return
      */
     @GetMapping(value = "/store/bbb")
-    Result<String> bbbb(@RequestParam("orderNo") Long orderNo);
+    Result<String> bbbb(@RequestParam("orderNo") Long orderNo,@RequestParam("type") Integer type);
 }

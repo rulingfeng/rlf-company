@@ -24,9 +24,9 @@ public class StoreController {
 
 
     @GetMapping("/bbb")
-    public Result<String> bbb(Long orderNo){
+    public Result<String> bbb(Long orderNo,Integer type){
         StoreMain storeMain = new StoreMain();
-       // int a = 1/0;
+        int a = 1/type;
         storeMain.setOrderNo(orderNo);
         storeMainService.save(storeMain);
         return Result.success("store okok");
