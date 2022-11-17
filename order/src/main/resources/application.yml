@@ -51,3 +51,4 @@ management: #开启SpringBoot Admin的监控
   endpoint:
     health:
       show-details: always
+
