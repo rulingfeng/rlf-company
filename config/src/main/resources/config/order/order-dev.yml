@@ -48,14 +48,7 @@ spring:
             inline:
               algorithm-expression: order_detail_$->{order_no % 4 + 1}
               sharding-column: order_no
-feign:
-  hystrix:
-    enabled: false
-  client:
-    config:
-      default:
-        connectTimeout: 5000
-        readTimeout: 10000
+
 
 #seata:
 #  enabled: true
