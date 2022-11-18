@@ -15,12 +15,10 @@ spring:
     datasource:
       #和下面的m1对应
       m1:
-        driver-class-name: com.mysql.jdbc.Driver
+        driver-class-name: com.mysql.cj.jdbc.Driver
         password: shmliy
-#        type: com.alibaba.druid.pool.DruidDataSource
-        type: com.zaxxer.hikari.HikariDataSource
-#        url: jdbc:mysql://121.43.183.45:3306/order?serverTimezone=GMT
-        jdbc-url: jdbc:mysql://121.43.183.45:3306/order?serverTimezone=GMT
+        type: com.alibaba.druid.pool.DruidDataSource
+        url: jdbc:mysql://121.43.183.45:3306/order?serverTimezone=GMT
         username: root
         #定义的库变量
       names: m1
