@@ -15,7 +15,7 @@ spring:
     datasource:
       #和下面的m1对应
       m1:
-        driver-class-name: com.mysql.cj.jdbc.Driver
+        driver-class-name: com.mysql.jdbc.Driver
         password: shmliy
 #        type: com.alibaba.druid.pool.DruidDataSource
         type: com.zaxxer.hikari.HikariDataSource
