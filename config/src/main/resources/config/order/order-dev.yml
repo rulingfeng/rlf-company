@@ -17,7 +17,8 @@ spring:
       m1:
         driver-class-name: com.mysql.cj.jdbc.Driver
         password: shmliy
-        type: com.alibaba.druid.pool.DruidDataSource
+#        type: com.alibaba.druid.pool.DruidDataSource
+        type: com.zaxxer.hikari.HikariDataSource
         url: jdbc:mysql://121.43.183.45:3306/order?serverTimezone=GMT
         username: root
         #定义的库变量
@@ -55,10 +56,21 @@ spring:
 #  tx-service-group: my_test_tx_group # 事务群组（可以每个应用独立取名，也可以使用相同的名字）
 #  enable-auto-data-source-proxy: true
 #  use-jdk-proxy: true
-  cloud:
-    alibaba:
-      seata:
-        tx-service-group: my_test_tx_group
+#  cloud:
+#    alibaba:
+#      seata:
+#        tx-service-group: my_test_tx_group
+seata:
+  enabled: true
+  tx-service-group: my_test_tx_group
+  registry:
+    type: eureka
+    eureka:
+      service-url: http://localhost:8761/eureka/
+  client:
+    support:
+      spring:
+        datasource-autoproxy: false
 #    loadbalancer:
 #      retry:
 #        enabled: true
