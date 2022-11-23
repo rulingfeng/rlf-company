@@ -51,8 +51,10 @@ public class OrderController {
             objects.add(orderMain);
         }
         orderMainService.saveBatch(objects);
+        System.out.println("保存goods");
         Result<String> bbbb = goodsApi.bbbb(777l);
         System.out.println(bbbb);
+        System.out.println("保存store");
         return storeApi.bbbb(666l,type);
 
 

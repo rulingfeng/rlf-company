@@ -28,6 +28,7 @@ public class StoreController {
         StoreMain storeMain = new StoreMain();
         int a = 1/type;
         storeMain.setOrderNo(orderNo);
+        System.out.println("保存store");
         storeMainService.save(storeMain);
         return Result.success("store okok");
     }

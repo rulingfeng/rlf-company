@@ -32,6 +32,7 @@ public class GoodsController {
         GoodsMain orderMain = new GoodsMain();
 
         orderMain.setOrderNo(orderNo);
+        System.out.println("保存goods");
         goodsMainService.save(orderMain);
         return Result.success("goods okok");
     }
