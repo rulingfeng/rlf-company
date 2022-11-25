@@ -8,6 +8,8 @@ import com.rlf.model.OrderMain;
 import com.rlf.service.OrderMainService;
 import com.rlf.util.Result;
 import io.seata.spring.annotation.GlobalTransactional;
+import org.apache.shardingsphere.transaction.annotation.ShardingTransactionType;
+import org.apache.shardingsphere.transaction.core.TransactionType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -41,7 +43,9 @@ public class OrderController {
     }
 
     @GetMapping("/bbb")
-    @GlobalTransactional(name = "fsp-create-order",rollbackFor = Exception.class)
+//    @GlobalTransactional(name = "fsp-create-order",rollbackFor = Exception.class)
+    @ShardingTransactionType(TransactionType.BASE)
+    @Transactional
     public Result<String> bbb(Integer type){
         ArrayList<OrderMain> objects = Lists.newArrayList();
         for (long i = 0; i < 4 ; i++) {
