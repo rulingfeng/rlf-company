@@ -11,6 +11,7 @@ import io.seata.spring.annotation.GlobalTransactional;
 import org.apache.shardingsphere.transaction.annotation.ShardingTransactionType;
 import org.apache.shardingsphere.transaction.core.TransactionType;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -36,6 +37,8 @@ public class OrderController {
     private GoodsApi goodsApi;
     @Resource
     private StoreApi storeApi;
+    @Autowired
+    private RedisTemplate redisTemplate;
 
     @GetMapping("/aaa")
     public void aaa(){
@@ -47,6 +50,7 @@ public class OrderController {
     @ShardingTransactionType(TransactionType.BASE)
     @Transactional
     public Result<String> bbb(Integer type){
+        redisTemplate.opsForValue().set("20221128rlf",System.currentTimeMillis());
         ArrayList<OrderMain> objects = Lists.newArrayList();
         for (long i = 0; i < 4 ; i++) {
             OrderMain orderMain = new OrderMain();
