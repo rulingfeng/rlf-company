@@ -50,7 +50,7 @@ public class OrderController {
     @ShardingTransactionType(TransactionType.BASE)
     @Transactional
     public Result<String> bbb(Integer type){
-        redisTemplate.opsForValue().set("20221128rlf",System.currentTimeMillis());
+        redisTemplate.opsForValue().set("20221128order",System.currentTimeMillis());
         ArrayList<OrderMain> objects = Lists.newArrayList();
         for (long i = 0; i < 4 ; i++) {
             OrderMain orderMain = new OrderMain();

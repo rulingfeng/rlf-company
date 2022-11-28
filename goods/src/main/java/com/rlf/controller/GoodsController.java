@@ -6,6 +6,7 @@ import com.rlf.service.GoodsMainService;
 import com.rlf.util.Result;
 import io.seata.spring.annotation.GlobalTransactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,9 +27,12 @@ public class GoodsController {
     private GoodsMainService goodsMainService;
     @Resource
     private StoreApi storeApi;
+    @Autowired
+    private RedisTemplate redisTemplate;
 
     @GetMapping("/bbb")
     public Result<String> bbb(Long orderNo){
+        redisTemplate.opsForValue().set("20221128goods",System.currentTimeMillis());
         GoodsMain orderMain = new GoodsMain();
 
         orderMain.setOrderNo(orderNo);
