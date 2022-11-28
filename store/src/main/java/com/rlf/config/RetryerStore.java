@@ -17,6 +17,9 @@ public class RetryerStore implements Retryer {
     int attempt;
     long sleptForMillis;
 
+    /**
+     * maxAttempts 默认是5 这里填的是1，解决了feign重复调用的问题
+     */
     public RetryerStore() {
         this(100L, TimeUnit.SECONDS.toMillis(1L), 1);
     }
