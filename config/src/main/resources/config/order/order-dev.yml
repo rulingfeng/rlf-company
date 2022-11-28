@@ -26,6 +26,7 @@ spring:
         #定义的库变量
       names: m1
     props:
+      xa-transaction-manager-type: Atomikos
       sql:
         show: true
     sharding:
