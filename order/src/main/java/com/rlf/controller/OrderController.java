@@ -10,6 +10,8 @@ import com.rlf.util.Result;
 import io.seata.spring.annotation.GlobalTransactional;
 import org.apache.shardingsphere.transaction.annotation.ShardingTransactionType;
 import org.apache.shardingsphere.transaction.core.TransactionType;
+import org.redisson.api.RLock;
+import org.redisson.api.RedissonClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.transaction.annotation.Transactional;
@@ -39,10 +41,19 @@ public class OrderController {
     private StoreApi storeApi;
     @Autowired
     private RedisTemplate redisTemplate;
+    @Resource
+    private RedissonClient redissonClient;
 
     @GetMapping("/aaa")
     public void aaa(){
         System.out.println(constants.getType());
+    }
+    @GetMapping("/redisson")
+    public String redisson(){
+        RLock creagggggg = redissonClient.getLock("creagggggg");
+        creagggggg.lock();
+        creagggggg.unlock();
+        return creagggggg.getName();
     }
 
     @GetMapping("/bbb")

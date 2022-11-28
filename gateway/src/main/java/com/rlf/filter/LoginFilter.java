@@ -78,6 +78,7 @@ public class LoginFilter implements GlobalFilter, Ordered {
         List<String> uriList = new ArrayList<>();
         uriList.add("/user/login");
         uriList.add("/order/test/bbb");
+        uriList.add("/order/test/redisson");
         uriList.add("/goods/goods/aaa");
 
         for (String pattern : uriList) {
