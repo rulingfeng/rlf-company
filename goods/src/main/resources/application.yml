@@ -19,3 +19,27 @@ management: #开启SpringBoot Admin的监控
   endpoint:
     health:
       show-details: always
+
+feign:
+  client:
+    config:
+      default:
+        connectTimeout: 3000
+        readTimeout: 10000
+        loggerLevel: full
+        retryer: com.rlf.config.RetryerGoods
+      # ribbon超时时间
+ribbon:
+  ReadTimeout: 50000
+  ConnectTimeout: 50000
+
+  #hystrix的超时时间
+hystrix:
+  command:
+    default:
+      execution:
+        timeout:
+          enabled: true
+        isolation:
+          thread:
+            timeoutInMilliseconds: 100000
