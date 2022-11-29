@@ -1,5 +1,10 @@
 
 spring:
+  data:
+    elasticsearch:
+      cluster-name: 10.11.2.51:9200
+      repositories:
+        enable: true
   #单库单表
 #  datasource:
 #   # type: com.alibaba.druid.pool.DruidDataSource
