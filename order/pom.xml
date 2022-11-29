@@ -18,6 +18,7 @@
         <maven.compiler.target>8</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <seata.version>1.4.0</seata.version>
+        <elasticsearch.version>7.4.2</elasticsearch.version>
     </properties>
     <dependencies>
 
@@ -193,6 +194,36 @@
 <!--            <artifactId>jedis</artifactId>-->
 <!--            <version>2.9.0</version>-->
 <!--        </dependency>-->
+
+        <!-- elasticsearch begin-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-elasticsearch</artifactId>
+        </dependency>
+        <!--        <dependency>-->
+        <!--            <groupId>org.elasticsearch.client</groupId>-->
+        <!--            <artifactId>transport</artifactId>-->
+        <!--            <version>6.4.3</version>-->
+        <!--        </dependency>-->
+        <dependency>
+            <groupId>org.elasticsearch.client</groupId>
+            <artifactId>elasticsearch-rest-high-level-client</artifactId>
+            <version>${elasticsearch.version}</version>
+        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>org.elasticsearch</groupId>-->
+<!--            <artifactId>elasticsearch</artifactId>-->
+<!--            <version>${elasticsearch.version}</version>-->
+<!--        </dependency>-->
+
+
+<!--        <dependency>-->
+<!--            <groupId>org.elasticsearch.client</groupId>-->
+<!--            <artifactId>transport</artifactId>-->
+<!--            <version>6.6.0</version>-->
+<!--        </dependency>-->
+
+
 
     </dependencies>
 
