@@ -37,6 +37,10 @@
                     <artifactId>spring-cloud-openfeign-core</artifactId>
                     <groupId>org.springframework.cloud</groupId>
                 </exclusion>
+                <exclusion>
+                    <artifactId>feign-hystrix</artifactId>
+                    <groupId>io.github.openfeign</groupId>
+                </exclusion>
             </exclusions>
         </dependency>
         <dependency>
@@ -209,6 +213,16 @@
             <groupId>org.elasticsearch.client</groupId>
             <artifactId>elasticsearch-rest-high-level-client</artifactId>
             <version>${elasticsearch.version}</version>
+        </dependency>
+        <!--hystrix 依赖-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-hystrix</artifactId>
+        </dependency>
+        <dependency>
+            <artifactId>feign-hystrix</artifactId>
+            <groupId>io.github.openfeign</groupId>
+            <version>10.10.1</version>
         </dependency>
 <!--        <dependency>-->
 <!--            <groupId>org.elasticsearch</groupId>-->

@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 /**
  * @author 小富 ，公众号：程序员内点事
  */
-@FeignClient(value = "goods")
+@FeignClient(value = "goods",fallbackFactory = GoodsApiFallbackFactory.class)
 public interface GoodsApi {
 
     /**
