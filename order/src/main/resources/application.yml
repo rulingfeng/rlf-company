@@ -58,6 +58,7 @@ management: #开启SpringBoot Admin的监控
 
 
 feign:
+  #服务降级需要
   hystrix:
     enabled: true
   client:
