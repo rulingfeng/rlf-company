@@ -3,6 +3,8 @@ package com.rlf.controller;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.google.common.collect.Lists;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty;
 import com.rlf.config.Constants;
 import com.rlf.es.EsOrder;
 import com.rlf.es.snow.KeyUtils;
@@ -131,6 +133,62 @@ public class OrderController {
 
     }
 
+
+
+    @GetMapping("/bbbb")
+//    @GlobalTransactional(name = "fsp-create-order",rollbackFor = Exception.class)
+    @ShardingTransactionType(TransactionType.BASE)
+    @Transactional
+    //熔断是不会生效分布式事务的
+    // 降级的优先级大于熔断，有了降级，就优先降级，没有降级才会熔断
+    @HystrixCommand(fallbackMethod = "dept_TimeoutHandler",
+            commandProperties =
+                    //规定 5 秒钟以内就不报错，正常运行，超过 5 秒就报错，调用指定的方法
+                    {@HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value = "5000")})
+    public Result<String> bbbb(Integer type)throws IOException {
+        EsOrder esOrder = new EsOrder();
+        esOrder.setId(8888l);
+        esOrder.setOrderNo(KeyUtils.getSnakeflakeStringKey());
+        esOrder.setOrderName("鲜奶味道巧克力面包吐司很香的");
+        esOrder.setPrice(19.6);
+        esOrder.setStartTime(new Date());
+        esOrder.setEndTime(new Date());
+        // 拿到索引
+        IndexRequest request = new IndexRequest("user_order");
+        // 设置文档id
+        request.id("8888");
+
+        // 将User对象转化为JSON，数据放入请求
+        request.source(JSON.toJSONString(esOrder), XContentType.JSON);
+        // 客户端发送请求后获取响应
+        IndexResponse index = highLevelClient.index(request, RequestOptions.DEFAULT);
+
+        System.out.println(index.toString());
+        // 索引状态
+        System.out.println(index.status());
+
+
+        redisTemplate.opsForValue().set("20221128order",System.currentTimeMillis());
+        ArrayList<OrderMain> objects = Lists.newArrayList();
+        for (long i = 0; i < 4 ; i++) {
+            OrderMain orderMain = new OrderMain();
+            orderMain.setOrderId(888l);
+            orderMain.setOrderNo(i);
+            objects.add(orderMain);
+        }
+        orderMainService.saveBatch(objects);
+        System.out.println("保存goods");
+        Result<String> bbbb = goodsApi.bbbb(777l);
+        System.out.println(bbbb);
+        System.out.println("保存store");
+        return storeApi.bbbb(666l,type);
+
+
+    }
+    // 当服务出现故障后，调用该方法给出友好提示
+    public Result<String> dept_TimeoutHandler(Integer id) {
+        return  Result.error("C语言中文网提醒您，系统繁忙请稍后再试！"+"线程池：" + Thread.currentThread().getName() + "  deptInfo_Timeout,id:   " + id);
+    }
     @GetMapping("/esSearch")
     public void searchTest(@RequestParam(required = false) String orderNo,@RequestParam(required = false) String orderName) throws IOException {
         Integer pageNum=1;

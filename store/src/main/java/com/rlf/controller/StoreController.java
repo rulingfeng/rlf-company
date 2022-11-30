@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @author rulingfeng
@@ -29,7 +30,9 @@ public class StoreController {
 
 
     @GetMapping("/bbb")
-    public Result<String> bbb(Long orderNo,Integer type){
+    public Result<String> bbb(Long orderNo,Integer type) throws InterruptedException {
+        //如果一旦熔断，那么后续的任务都不会被执行，直接返回，熔断是不会生效分布式事务的
+        //TimeUnit.SECONDS.sleep(6);
         redisTemplate.opsForValue().set("20221128store",System.currentTimeMillis());
         StoreMain storeMain = new StoreMain();
         int a = 1/type;
